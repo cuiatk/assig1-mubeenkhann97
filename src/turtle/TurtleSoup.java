@@ -4,6 +4,7 @@
 package turtle;
 
 import java.util.List;
+import java.awt.Color;
 import java.util.ArrayList;
 
 public class TurtleSoup {
@@ -20,6 +21,28 @@ public class TurtleSoup {
     	   turtle.forward(100);
     	   turtle.turn(90);
        }    
+    }
+    /**Draw A window at the current position
+     * 
+     */
+    public static void drawWindow(Turtle turtlePersonel) {
+    	turtlePersonel.forward(30);
+        turtlePersonel.turn(-90);
+        turtlePersonel.forward(30);
+        turtlePersonel.turn(-90);
+        turtlePersonel.forward(30);
+        turtlePersonel.turn(-90);
+        turtlePersonel.forward(30);
+        turtlePersonel.turn(270);
+        turtlePersonel.forward(15);
+        turtlePersonel.turn(-90);
+        turtlePersonel.forward(30);
+        turtlePersonel.turn(-180);
+        turtlePersonel.forward(15);
+        turtlePersonel.turn(90);
+        turtlePersonel.forward(15);
+        turtlePersonel.turn(180);
+        turtlePersonel.forward(30);
     }
 
     /**
@@ -112,8 +135,58 @@ public class TurtleSoup {
      * 
      * @param turtle the turtle context
      */
-    public static void drawPersonalArt(Turtle turtle) {
-        throw new RuntimeException("implement me!");
+    public static void drawPersonalArt(Turtle turtle,int side_length) {
+    	  DrawableTurtle turtlePersonel = new DrawableTurtle();
+          // draw the window
+           turtlePersonel.draw();
+           turtlePersonel.currentPosition = new Point(-150,150);
+           turtlePersonel.turn(150);
+           turtlePersonel.forward(100);
+           turtlePersonel.turn(-60);
+           turtlePersonel.forward(200); 
+           turtlePersonel.turn(-90);
+           turtlePersonel.forward(85);
+           turtlePersonel.turn(-90);
+           turtlePersonel.forward(250);
+           turtlePersonel.turn(-60);
+           turtlePersonel.forward(100);
+           turtlePersonel.turn(-30);
+           turtlePersonel.forward(150);
+           turtlePersonel.turn(-90);
+           turtlePersonel.forward(25);
+           turtlePersonel.turn(270);
+           turtlePersonel.forward(60);
+           turtlePersonel.turn(90);
+           turtlePersonel.forward(25);
+           turtlePersonel.turn(-270);
+           turtlePersonel.forward(60);
+           turtlePersonel.turn(90);
+           turtlePersonel.forward(25);
+          
+         /** door lock
+           turtlePersonel.currentPosition = new Point(-165,-70);
+           turtlePersonel.color(PenColor.RED);
+           turtlePersonel.turn(-45);
+           for (int i=1;i<40;i++) {
+        	   turtlePersonel.forward(1);
+        	   turtlePersonel.turn(10);
+           }
+           */
+           turtlePersonel.turn(180);
+           turtlePersonel.forward(275) ; 
+           turtlePersonel.turn(-90);
+           turtlePersonel.forward(151);
+           turtlePersonel.turn(-90);
+           turtlePersonel.forward(300);
+           turtlePersonel.turn(180);
+           turtlePersonel.forward(100);
+           turtlePersonel.turn(90);
+           turtlePersonel.forward(150);
+          
+           turtlePersonel.currentPosition = new Point(30,35);
+           drawWindow(turtlePersonel);
+           turtlePersonel.currentPosition = new Point(-65,35);
+           drawWindow(turtlePersonel);
     }
 
     /**
@@ -124,12 +197,15 @@ public class TurtleSoup {
      * @param args unused
      */
     public static void main(String args[]) {
+    	
         DrawableTurtle turtle = new DrawableTurtle();
-
-        drawSquare(turtle, 40);
-
-        // draw the window
+       // draw the window
         turtle.draw();
+        drawSquare(turtle,0);
+        
+        drawPersonalArt(turtle,0);
+        
+        
     }
 
 }
