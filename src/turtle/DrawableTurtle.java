@@ -24,7 +24,7 @@ public class DrawableTurtle implements Turtle {
     private final List<Action> actionList;
     private final List<LineSegment> lines;
 
-    private Point currentPosition;
+    public Point currentPosition;
     private double currentHeading;
     private PenColor currentColor;
 
@@ -32,7 +32,7 @@ public class DrawableTurtle implements Turtle {
      * Create a new turtle for drawing on screen.
      */
     public DrawableTurtle() {
-        this.currentPosition = new Point(0, 0);
+        this.currentPosition = new Point(-150,0);
         this.currentHeading = 0.0;
         this.currentColor = PenColor.BLACK;
         this.lines = new ArrayList<>();
