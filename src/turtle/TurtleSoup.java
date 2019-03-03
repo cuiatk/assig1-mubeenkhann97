@@ -4,6 +4,7 @@
 package turtle;
 
 import java.util.List;
+import java.math.*;
 import java.awt.Color;
 import java.util.ArrayList;
 
@@ -80,12 +81,12 @@ public class TurtleSoup {
      * @param sides number of sides, where sides must be > 2
      * @return angle in degrees, where 0 <= angle < 360
      */
-    public static double calculateRegularPolygonAngle(int sides) {
-    	 double interiorAngle;
+    public static double calculateRegularPolygonAngle(double sides) {
+    	 
          
          // formula to find the interior angle 
-         interiorAngle = (sides - 2) * 180 / sides;
-         return interiorAngle;
+          return (sides - 2) * 180 / sides;
+         
     }
 
     /**
@@ -98,8 +99,8 @@ public class TurtleSoup {
      * @param angle size of interior angles in degrees, where 0 < angle < 180
      * @return the integer number of sides
      */
-    public static int calculatePolygonSidesFromAngle(double angle) {
-        throw new RuntimeException("implement me!");
+    public static long calculatePolygonSidesFromAngle(double angle) {
+        return Math.round(360/(180-angle));
     }
 
     /**
@@ -140,9 +141,11 @@ public class TurtleSoup {
      * @return adjustment to heading (right turn amount) to get to target point,
      *         must be 0 <= angle < 360
      */
-    public static double calculateHeadingToPoint(double currentHeading, int currentX, int currentY,
-                                                 int targetX, int targetY) {
-        throw new RuntimeException("implement me!");
+    public static double calculateHeadingToPoint(double currentHeading,int currentX,int currentY,
+                                                 int targetX,int targetY) {
+    	
+       double calculatedHeading = Math.atan2(targetY-currentY,targetX-currentX);
+        return calculatedHeading;
     }
 
     /**
@@ -198,8 +201,6 @@ public class TurtleSoup {
            turtlePersonel.forward(60);
            turtlePersonel.turn(90);
            turtlePersonel.forward(25);
-          
-          
            turtlePersonel.turn(180);
            turtlePersonel.forward(275) ; 
            turtlePersonel.turn(-90);
@@ -210,7 +211,6 @@ public class TurtleSoup {
            turtlePersonel.forward(100);
            turtlePersonel.turn(90);
            turtlePersonel.forward(150);
-          
            turtlePersonel.currentPosition = new Point(30,35);
            drawWindow(turtlePersonel);
            turtlePersonel.currentPosition = new Point(-65,35);
@@ -237,12 +237,12 @@ public class TurtleSoup {
            }
            turtlePersonel.currentPosition = new Point (-115,192);
            drawStar(turtlePersonel);			//draw star in the flag  
-           drawDoorLock(turtlePersonel);		//draw door lock
-         
-          
-           
+           drawDoorLock(turtlePersonel);		//draw door lock   
     }
-    //Method to draw a door lock
+    /**Method to draw a door lock
+     * 
+     * @param turtlePersonel object to draw door lock
+     */
     private static void drawDoorLock(DrawableTurtle turtlePersonel) {
     	turtlePersonel.color(PenColor.RED);
         turtlePersonel.turn(-45);
@@ -270,10 +270,10 @@ public class TurtleSoup {
         drawPersonalArt();
         
         //Draw a Octagon
-       double angle =  calculateRegularPolygonAngle(8);
-       drawRegularPolygon(angle,8,100);
-        
-        
+       double angle =  calculateRegularPolygonAngle(3);
+       drawRegularPolygon(angle,8,100);  
+       
+       double n = calculateHeadingToPoint(0.0,0,0,0,1);
+       System.out.print(n);
     }
-
 }
