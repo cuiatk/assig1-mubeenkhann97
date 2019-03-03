@@ -44,6 +44,32 @@ public class TurtleSoup {
         turtlePersonel.turn(180);
         turtlePersonel.forward(30);
     }
+    /**Draw A star inside the flag
+     * 
+     */
+    public static void drawStar(DrawableTurtle turtlePersonel) {
+    	turtlePersonel.turn(10);
+        turtlePersonel.turn(-90);
+        turtlePersonel.forward(6);
+        turtlePersonel.turn(180);
+        turtlePersonel.forward(3);
+        turtlePersonel.turn(90);
+        turtlePersonel.forward(3);
+        turtlePersonel.turn(180);
+        turtlePersonel.forward(6);
+        turtlePersonel.turn(-180);
+        turtlePersonel.forward(3);
+        turtlePersonel.turn(45);
+        turtlePersonel.forward(3);
+        turtlePersonel.turn(-180);
+        turtlePersonel.forward(6);
+        turtlePersonel.turn(180);
+        turtlePersonel.forward(3);
+        turtlePersonel.turn(105);
+        turtlePersonel.forward(3);
+        turtlePersonel.turn(-180);
+        turtlePersonel.forward(6);
+    }
 
     /**
      * Determine inside angles of a regular polygon.
@@ -55,7 +81,11 @@ public class TurtleSoup {
      * @return angle in degrees, where 0 <= angle < 360
      */
     public static double calculateRegularPolygonAngle(int sides) {
-        throw new RuntimeException("implement me!");
+    	 double interiorAngle;
+         
+         // formula to find the interior angle 
+         interiorAngle = (sides - 2) * 180 / sides;
+         return interiorAngle;
     }
 
     /**
@@ -81,8 +111,14 @@ public class TurtleSoup {
      * @param sides number of sides of the polygon to draw
      * @param sideLength length of each side
      */
-    public static void drawRegularPolygon(Turtle turtle, int sides, int sideLength) {
-        throw new RuntimeException("implement me!");
+    public static void drawRegularPolygon(double angle, int sides, int sideLength) {
+    	DrawableTurtle turtlePersonel = new DrawableTurtle();
+    	turtlePersonel.draw();
+    	for (int i =0 ; i<sides;i++) {
+    		turtlePersonel.forward(sideLength);
+            turtlePersonel.turn(angle-90);
+    		
+    	}
     }
 
     /**
@@ -135,7 +171,7 @@ public class TurtleSoup {
      * 
      * @param turtle the turtle context
      */
-    public static void drawPersonalArt(Turtle turtle,int side_length) {
+    public static void drawPersonalArt() {
     	  DrawableTurtle turtlePersonel = new DrawableTurtle();
           // draw the window
            turtlePersonel.draw();
@@ -163,15 +199,7 @@ public class TurtleSoup {
            turtlePersonel.turn(90);
            turtlePersonel.forward(25);
           
-         /** door lock
-           turtlePersonel.currentPosition = new Point(-165,-70);
-           turtlePersonel.color(PenColor.RED);
-           turtlePersonel.turn(-45);
-           for (int i=1;i<40;i++) {
-        	   turtlePersonel.forward(1);
-        	   turtlePersonel.turn(10);
-           }
-           *////////////////////
+          
            turtlePersonel.turn(180);
            turtlePersonel.forward(275) ; 
            turtlePersonel.turn(-90);
@@ -187,9 +215,45 @@ public class TurtleSoup {
            drawWindow(turtlePersonel);
            turtlePersonel.currentPosition = new Point(-65,35);
            drawWindow(turtlePersonel);
+           //drawing the flag
+           turtlePersonel.currentPosition = new Point (-150,150);
+           turtlePersonel.turn(180);
+           turtlePersonel.forward(60);
+           turtlePersonel.turn(90);
+           turtlePersonel.forward(50);
+           turtlePersonel.turn(90);
+           turtlePersonel.forward(30);
+           turtlePersonel.turn(90);
+           turtlePersonel.forward(50);
+           turtlePersonel.turn(180);
+           turtlePersonel.forward(20);
+           turtlePersonel.turn(-90);
+           turtlePersonel.forward(30);
+           turtlePersonel.currentPosition = new Point (-115,200);
+           turtlePersonel.turn(-90);
+           for (int i=1;i<20;i++) {
+        	   turtlePersonel.forward(1);
+        	   turtlePersonel.turn(-10);
+           }
+           turtlePersonel.currentPosition = new Point (-115,192);
+           drawStar(turtlePersonel);			//draw star in the flag  
+           drawDoorLock(turtlePersonel);		//draw door lock
+         
+          
+           
     }
-
-    /**
+    //Method to draw a door lock
+    private static void drawDoorLock(DrawableTurtle turtlePersonel) {
+    	turtlePersonel.color(PenColor.RED);
+        turtlePersonel.turn(-45);
+        for (int i=1;i<40;i++) {
+     	   turtlePersonel.currentPosition = new Point(-158,-50);
+     	   turtlePersonel.forward(3);
+     	   turtlePersonel.turn(10);
+        }
+		
+	}
+	/**
      * Main method.
      * 
      * This is the method that runs when you run "java TurtleSoup".
@@ -197,13 +261,17 @@ public class TurtleSoup {
      * @param args unused
      */
     public static void main(String args[]) {
-    	
+    	//DRAW A SQUARE
         DrawableTurtle turtle = new DrawableTurtle();
-       // draw the window
         turtle.draw();
         drawSquare(turtle,0);
         
-        drawPersonalArt(turtle,0);
+        //Draw Personal art
+        drawPersonalArt();
+        
+        //Draw a Octagon
+       double angle =  calculateRegularPolygonAngle(8);
+       drawRegularPolygon(angle,8,100);
         
         
     }
